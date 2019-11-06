@@ -1,8 +1,13 @@
 import com.google.gson.Gson
 
+data class InnerObject(
+    val birthDate: String
+)
+
 data class User(
     val name: String,
-    val age: Int
+    val age: Int,
+    val innerObject: InnerObject = InnerObject("Today!")
 )
 
 fun main(args: Array<String>) {
@@ -25,5 +30,11 @@ fun main(args: Array<String>) {
         println("Here's the same, this should never be shown")
     }
 
+    if (unmarshalledObject2.innerObject == null) {
+        println("We should not print this as well, right? Because we have a default value! But you(we)'re, at least so far, wrong!")
+    }
+
+    println(unmarshalledObject1)
+    println(unmarshalledObject2)
     println("Finished")
 }
